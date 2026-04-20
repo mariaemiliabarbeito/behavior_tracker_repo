@@ -18,8 +18,12 @@ def filtrar_por_participante(datos, id_participante):
         datos_participante (list): datos del participante filtrado
 
     '''
+    if not isinstance(id_participante,int):
+        raise TypeError("El valor debe ser un int")
     datos_participante = []
-    for registro in datos:     
-       if id_participante == registro["id_participante"]:
-            datos_participante.append(registro)
+    for registro_participante in datos:    
+       if "id_participante" not in registro_participante:
+            raise KeyError ("La clave no se encuentra")
+       if id_participante == registro_participante["id_participante"]:
+            datos_participante.append(registro_participante)
     return datos_participante
