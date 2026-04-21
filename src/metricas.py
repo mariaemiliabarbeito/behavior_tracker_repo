@@ -22,19 +22,20 @@ def calcular_tiempo_total(datos):
 
     """
     if datos==[]:
-        return {}
+        raise ValueError ("La lista se encuentra vacía por lo tanto el tiempo total no se encuentra")
     tiempo_por_app={}
     for dato in datos:
-        apps= dato["app"]
+        lista_apps= dato["app"]
         tiempos= dato["tiempo_uso"]
-        for i in range(len(apps)):
-            app = apps [i]
+        for i in range(len(lista_apps)):
+            app =lista_apps [i]
             tiempo=tiempos [i]
             if app in tiempo_por_app:         #duda
-                tiempo_por_app[app] += tiempo #duda
+                tiempo_por_app[app] += tiempo  
             else:                              
                 tiempo_por_app[app]= tiempo
-    return tiempo_por_app   
+    tiempo_total=sum(tiempo_por_app.values())            
+    return tiempo_por_app,tiempo_total   
 def calcular_promedio_uso(datos): 
     """
     
@@ -50,13 +51,11 @@ def calcular_promedio_uso(datos):
         DESCRIPTION.
 
     """
-    tiempos=calcular_tiempo_total(datos)
-    valores= tiempos.values()
-    total= sum(valores)
-    cantidad=0
-    for dato in datos: #promedio total no promedio por app
-        cantidad += len(dato["app"])
-    promedio= total/cantidad
+    resultado= calcular_tiempo_total(datos)
+    tiempo_por_app= resultado[0]
+    tiempo_total= resultado[1]
+    
+    promedio= tiempo_total/ len(tiempo_por_app)
     return promedio
 def calcular_uso_por_app(datos):
     """
