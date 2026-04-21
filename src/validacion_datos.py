@@ -63,10 +63,7 @@ def validar_fecha (fecha):
     """
     if fecha == "":
        raise ValueError ("La fecha está vacía")
-    #try:
-   #     fecha=str(fecha)
-   # except ValueError:
-   #     raise ValueError("Fecha invalida")
+   
     try:
         datetime.strptime(fecha,"%Y-%m-%d")
     except ValueError:
@@ -124,7 +121,7 @@ def validar_cantidad_uso (cantidad_uso):
 
     """
     if cantidad_uso  == "":
-       return ValueError ("La cantidad de uso está vacía")
+       raise ValueError ("La cantidad de uso está vacía")
     try:
          cantidad_uso=int(cantidad_uso)
     except ValueError:
@@ -168,9 +165,9 @@ def validar_datos(registro):
     fecha= validar_fecha (registro[1])
     app= validar_app (registro[2])
     cantidad_uso= validar_cantidad_uso (registro[3])
-    tiempo= validar_tiempo_uso(registro[4])
+    tiempo_uso= validar_tiempo_uso(registro[4])
     
-    return [id_participante, fecha, app, cantidad_uso, tiempo]
+    return [id_participante, fecha, app, cantidad_uso, tiempo_uso]
     
         
               
