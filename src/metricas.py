@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+   #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Tue Apr 14 10:39:37 2026
@@ -13,9 +13,9 @@ def calcular_tiempo_total(datos):
     Parameters
     ----------
     datos : TYPE
-        DESCRIPTION.
+        DESCRIPTIO
 
-    Returns
+    Returns  
     -------
     TYPE
         DESCRIPTION.
