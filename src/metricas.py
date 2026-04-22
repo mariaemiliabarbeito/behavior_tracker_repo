@@ -30,33 +30,38 @@ def calcular_tiempo_total(datos):
         for i in range(len(lista_apps)):
             app =lista_apps [i]
             tiempo=tiempos [i]
-            if app in tiempo_por_app:         #duda
+            if app in tiempo_por_app:         
                 tiempo_por_app[app] += tiempo  
             else:                              
                 tiempo_por_app[app]= tiempo
-    tiempo_total=sum(tiempo_por_app.values())            
+    tiempo_total = sum(tiempo_por_app.values())            
     return tiempo_por_app,tiempo_total   
 def calcular_promedio_uso(datos): 
     """
-    
+    Que hace: calcula el promedio del tiempo que se usan las aplicaciones.
 
-    Parameters
+    Parametros: 
     ----------
-    datos : TYPE
-        DESCRIPTION.
+    datos : lista
+        lista, donde cada elemento es un diccionario que contiene el registro de un participante.
 
     Returns
     -------
-    promedio : TYPE
-        DESCRIPTION.
+    promedio : float
+        promedio de tiempo de uso.
 
     """
     resultado= calcular_tiempo_total(datos)
-    tiempo_por_app= resultado[0]
+    
     tiempo_total= resultado[1]
     
-    promedio= tiempo_total/ len(tiempo_por_app)
+    total_usos = 0
+    for dato in datos:
+        total_usos += sum(dato["cantidad_uso"])
+    
+    promedio= tiempo_total / total_usos
     return promedio
+
 def calcular_uso_por_app(datos):
     """
     
