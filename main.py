@@ -12,7 +12,7 @@ from src.procesamiento_datos import filtrar_por_participante
 from src.metricas import (calcular_tiempo_total, calcular_promedio_uso, calcular_uso_por_app)
 
 ruta = "datos/BehaviorTracker_mock_data.csv"
-
+ruta = input("ingrese ruta: ")
 try:
     datos = cargar_datos (ruta)
     
