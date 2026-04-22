@@ -7,13 +7,15 @@ Created on Tue Apr 14 10:40:35 2026
 """
 
 from src.carga_datos import cargar_datos
-## no importo validar_datos porque se importa dentro de cargar_datos
+# no importo validar_datos porque se importa dentro de cargar_datos
 from src.procesamiento_datos import filtrar_por_participante
 from src.metricas import (calcular_tiempo_total, calcular_promedio_uso, calcular_uso_por_app)
+
 ruta = "datos/BehaviorTracker_mock_data.csv"
 
 try:
     datos = cargar_datos (ruta)
+    
 except FileNotFoundError as e:
     print(f"Error en el archivo: {e}")
     exit()
@@ -26,7 +28,7 @@ except Exception as e:
    
 
 try:
-    id_participante = input("ingrese el id del participante que desea filtrar: ")
+    id_participante = (input("ingrese el id del participante que desea filtrar: "))
     registro_participante = [filtrar_por_participante(datos, id_participante)] ##lo pongo dentro de una lista para poder usarlo en metricas
 except ValueError as e:
     print(f"Error con el id o con el participante: {e} ")
