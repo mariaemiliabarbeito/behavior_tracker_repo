@@ -6,4 +6,4 @@ Created on Tue Apr 14 10:40:35 2026
 @author: mariaemiliabarbeito
 """
 
-main
+def main
