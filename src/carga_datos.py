@@ -35,14 +35,17 @@ def parsear_linea(linea):
     
 def cargar_datos(ruta):
     """
-    Que hace la funcion: Lee un archivo CSV y devuelve una lista de registros.
+    Que hace la funcion: 
+        Lee un archivo CSV y devuelve una lista de registros.
 
     Parametros
     ruta : str
         Ruta del archivo
 
     Retorna:
-    list: lista de diccionarios con los datos de cada participante.
+    datos: list
+    lista de diccionarios con los datos de cada participante.
+    
     Excepciones:
         FileNotFoundError: si el archivo no existe.
         Exception: si no se logra abrir el archivo.
