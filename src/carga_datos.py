@@ -5,7 +5,7 @@ Created on Tue Apr 14 10:36:07 2026
 
 @author: mariaemiliabarbeito
 """
-from src.validacion_datos.py import validar_datos
+from src.validacion_datos import validar_datos
 
 def parsear_linea(linea):
     """
