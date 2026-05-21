@@ -37,26 +37,26 @@ except ValueError as e:
 
 except KeyError as e:
     print(f" error con datos: {e}")
-    exit()
+
 except Exception as e:
    print (f"Error inesperado: {e}")
-   exit()
+   
    
 ###metricas
 try:
+    print(f"Los resultados para el participante {id_participante} son: ")
     tiempo_total= calcular_tiempo_total(registro_participante)
+    print("El Tiempo total fue: {tiempo_total}")
     promedio_uso= calcular_promedio_uso (registro_participante)
+    print("El promedio de uso fue: {promedio_uso}")
     uso_por_app = calcular_uso_por_app(registro_participante)
+    print(f"el uso por app fue: {uso_por_app}")
 except ZeroDivisionError as e: 
     print(f"Error cuando se calcula el promedio: {e}")
 except KeyError as e:
      print(f" error con datos: {e}")
-     exit()
+     
 except Exception as e:
     print (f"Error inesperado: {e}")
-    exit()
+    
 
-print(f"Los resultados para el participante {id_participante} son: ")
-print("El Tiempo total fue: {tiempo_total}")
-print("El promedio de uso fue: {promedio_uso}")
-print(f"el uso por app fue: {uso_por_app}")

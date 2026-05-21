@@ -65,7 +65,7 @@ def validar_fecha (fecha):
        raise ValueError ("La fecha está vacía")
    
     try:
-        datetime.strptime(fecha,"%Y-%m-%d")
+        datetime.strptime(fecha,"%Y/%m/%d")
     except ValueError:
         raise ValueError ("La fecha no tiene formato valido")
     return fecha
