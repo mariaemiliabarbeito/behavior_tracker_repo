@@ -55,12 +55,13 @@ def grafico_tiempo_uso_por_fecha(df):
     plt.title('Tiempo de uso a lo largo del tiempo', fontsize=13, fontweight='bold', pad=15)
     plt.xlabel('Fecha', fontsize=11)
     plt.ylabel('Tiempo uso (min)', fontsize=11)
-    plt.xticks(rotatio=45)
+    plt.xticks(rotation=45)
     plt.grid(True, linestyle=':', alpha=0.6)
     plt.tight_layout()
 
-    plt.savefig('graficos/tiempo_uso._por_fecha.png', dpi=300)
+    plt.savefig('graficos/tiempo_uso_por_fecha.png', dpi=300)
     plt.show()
+    plt.close()
 
     
 

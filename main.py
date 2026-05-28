@@ -11,25 +11,48 @@ from src.validacion_datos import validar_datos
 
 from src.procesamiento_datos import filtrar_por_participante
 from src.metricas import (calcular_tiempo_total, calcular_promedio_uso, calcular_uso_por_app)
-from src.graficos import tiempo_por_app_grafico
+from src.graficos import (tiempo_por_app_grafico, grafico_tiempo_uso_por_fecha)
 
 ruta_csv = "datos/BehaviorTracker_mock_data.csv"
 try:
     df = cargar_datos(ruta_csv)
-    validar_datos(df)
+    df=validar_datos(df)
 
 except FileNotFoundError as e:
     print(f"Error en el archivo: {e}")
+except ValueError as e:
+    print(f"Error en los datos: {e}")
+except TypeError as e :
+    print(f"Error en el tipo de dato: {e}")
 
-#faltan cosas
+try:
+    print(f"Los resultados para el participante {id_participante} son: ")
+    tiempo_total= calcular_tiempo_total(df)
+    print(f"El Tiempo total fue: {tiempo_total}")
+    promedio_uso= calcular_promedio_uso (df)
+    print(f"El promedio de uso fue: {promedio_uso}")
+    uso_por_app = calcular_uso_por_app(df)
+    print(f"el uso por app fue: {uso_por_app}")
+except ZeroDivisionError as e: 
+    print(f"Error cuando se calcula el promedio: {e}")
+except KeyError as e:
+     print(f" error con datos: {e}")
+     
+except Exception as e:
+    print (f"Error inesperado: {e}")
+try:    
+   tiempo_por_app_grafico(df)
+   grafico_tiempo_uso_por_fecha(df)
+except Exception as e:
+    print(f"Error inesperado al generar los graficos")
 
-tiempo_por_app_grafico(df)
 
 
 
 
-
-   
+ #validacion
+try:
+    
    
 
 try:
@@ -45,21 +68,5 @@ except Exception as e:
    print (f"Error inesperado: {e}")
    
    
-###metricas
-try:
-    print(f"Los resultados para el participante {id_participante} son: ")
-    tiempo_total= calcular_tiempo_total(registro_participante)
-    print("El Tiempo total fue: {tiempo_total}")
-    promedio_uso= calcular_promedio_uso (registro_participante)
-    print("El promedio de uso fue: {promedio_uso}")
-    uso_por_app = calcular_uso_por_app(registro_participante)
-    print(f"el uso por app fue: {uso_por_app}")
-except ZeroDivisionError as e: 
-    print(f"Error cuando se calcula el promedio: {e}")
-except KeyError as e:
-     print(f" error con datos: {e}")
-     
-except Exception as e:
-    print (f"Error inesperado: {e}")
-    
+
 
