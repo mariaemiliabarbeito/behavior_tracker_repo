@@ -7,12 +7,24 @@ Created on Tue Apr 14 10:40:35 2026
 """
 
 from src.carga_datos import cargar_datos
-# no importo validar_datos porque se importa dentro de cargar_datos
+from src.validacion_datos import validar_datos
+
 from src.procesamiento_datos import filtrar_por_participante
 from src.metricas import (calcular_tiempo_total, calcular_promedio_uso, calcular_uso_por_app)
 
-ruta = "datos/BehaviorTracker_mock_data.csv"
-#ruta = input("ingrese ruta: ")
+ruta_csv = "datos/BehaviorTracker_mock_data.csv"
+try:
+    df = cargar_datos(ruta_csv)
+    validar_datos(df)
+
+except FileNotFoundError as e:
+    print(f"Error en el archivo: {e}")
+
+
+
+
+
+
 try:
     datos = cargar_datos (ruta)
     
