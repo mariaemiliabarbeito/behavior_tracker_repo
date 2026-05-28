@@ -11,6 +11,7 @@ from src.validacion_datos import validar_datos
 
 from src.procesamiento_datos import filtrar_por_participante
 from src.metricas import (calcular_tiempo_total, calcular_promedio_uso, calcular_uso_por_app)
+from src.graficos import tiempo_por_app_grafico
 
 ruta_csv = "datos/BehaviorTracker_mock_data.csv"
 try:
@@ -20,24 +21,14 @@ try:
 except FileNotFoundError as e:
     print(f"Error en el archivo: {e}")
 
+#faltan cosas
+
+tiempo_por_app_grafico(df)
 
 
 
 
 
-try:
-    datos = cargar_datos (ruta)
-    
-except FileNotFoundError as e:
-    print(f"Error en el archivo: {e}")
-
-except ValueError as e:
-    print(f"Error en los valores de los datos: {e}")
-
-    
-    
-except Exception as e:
-   print (f"Error inesperado: {e}")
    
    
 
