@@ -34,6 +34,34 @@ def tiempo_por_app_grafico(df):
     plt.show()
     plt.close()
 
+def grafico_tiempo_uso_por_fecha(df):
+    """
+    que hace la funcion: Crea un grafico de lineas en el que mustra el tiempo de uso segun las fechas, a lo largo del tiempo.
+    Parameters
+    ----------
+    df :Dataframe
+       Dataframe validado 
+
+    Returns
+    -------
+    None.
+        Muestra el grafico y lo guarda
+
+    """
+    plt.figure(figsize=(11, 5))
+
+    df.plot(kind='line', x='fecha', y='tiempo_uso', color='#b45309', linewidth=1.5, ax=plt.gca())
+
+    plt.title('Tiempo de uso a lo largo del tiempo', fontsize=13, fontweight='bold', pad=15)
+    plt.xlabel('Fecha', fontsize=11)
+    plt.ylabel('Tiempo uso (min)', fontsize=11)
+    plt.xticks(rotatio=45)
+    plt.grid(True, linestyle=':', alpha=0.6)
+    plt.tight_layout()
+
+    plt.savefig('graficos/tiempo_uso._por_fecha.png', dpi=300)
+    plt.show()
+
     
 
 
