@@ -5,15 +5,15 @@ Created on Tue Apr 14 10:38:23 2026
 
 @author: mariaemiliabarbeito
 """
-
-def validar_id_participante (id_participante):
+import pandas as pd
+def validar_id_participante (df):
     """
-    Que hace la funcion: Valida que el id sea del tipo de dato y tenga el valor correcto. Tambien valida que no esté vacía
+    Que hace la funcion: Valida que la columna id_partcipante no este vacía, que sus valores sean mayores a cero y que sea el tipo de dato correcto 
     
     Parametro
     ----------
-    id_participante : str
-        Id del participante sin validar en formato string
+    df: Dataframe
+        columna "id participante" sin validar
 
     Raises
     ------
@@ -22,33 +22,32 @@ def validar_id_participante (id_participante):
 
     Returns
     -------
-    id_participante : int
-        Id del participante validado en formato int
+    df :Dataframe
+        la columna id participante validada
 
     """
     
-    if id_participante == "":
+    if df["id_participante"].isna().any(): 
         raise ValueError (" El ID está vacío")
             
     try:
-         id_participante=int(id_participante)
+        df["id_participante"]=df["id_participante"].astype(int)
     except ValueError:
        raise ValueError("El ID es invalido")
        
-    if id_participante <= 0:
+    if (df["id_participante"] <= 0).any():
        raise ValueError (" El ID  es invalido")
-       
-    return id_participante
+    return df 
           
-from datetime import datetime
-def validar_fecha (fecha):
+
+def validar_fecha (df):
     """
-    Que hace la funcion: valida que la fecha tenga el formato correcto  y que no esté vacía
+    Que hace la funcion: valida que la columna fecha tenga el formato correcto  y que no esté vacía
 
     Parametro
     ----------
-    fecha : str
-        La fecha del participante sin validar en formato string
+    df: dataframe
+         Dataframe con la columna fecha sin validar
 
     Raises
     ------
@@ -57,27 +56,27 @@ def validar_fecha (fecha):
 
     Returns
     -------
-    fecha : str
-        Fecha validada en formato string
+    df: dataframe
+        Dataframe con la columna fecha validada
 
     """
-    if fecha == "":
-       raise ValueError ("La fecha está vacía")
-   
+    if df["fecha"].isna().any(): 
+        raise ValueError ("La fecha esta vacia")
+
     try:
-        datetime.strptime(fecha,"%Y/%m/%d")
+        pd.to_datetime(df["fecha"], format="%Y/%m/%d") 
     except ValueError:
         raise ValueError ("La fecha no tiene formato valido")
-    return fecha
+    return df
 
-def validar_app (app):
+def validar_app (df):
     """
-    Que hace la funcion: valida que la app sea el tipo de dato correcto y que no esté vacía
+    Que hace la funcion: valida que la columna app app sea el tipo de dato correcto y que no esté vacía
 
     Parameteros
     ----------
-    app : str
-        La app sin validar en formato string
+    df: Dataframe
+        Dataframe con la columna "app" sin validar
 
     Raises
     ------
@@ -88,27 +87,25 @@ def validar_app (app):
 
     Returns
     -------
-    app : str
-       App validada en formato string
+    df: Dataframe
+       Dataframe con la columna app validada
 
     """
-    
-    if app == "" :
-      raise ValueError("La app está vacía")
-      
-    if not isinstance (app, str):
+    if df["app"].isna().any(): 
+        raise ValueError ("La app esta vacia")
+   
+    if ["app"].dtype != str:
         raise TypeError ("La app debe ser un string")
-    return app
+    return df
 
-def validar_cantidad_uso (cantidad_uso):
+def validar_cantidad_uso (df):
     """
-    Que hace la funcion: Valida que la cantidad de uso sea del tipo de dato y tenga el valor correcto y que no este vacia.
+    Que hace la funcion: Valida que la  columna cantidad de uso sea del tipo de dato y tenga el valor correcto y que no este vacia.
 
     Parametros
     ----------
-    cantidad_uso: str
-        La cantidad de uso sin validar en formato string
-
+    df: dataframe
+        Dataframe con la columna cantidad uso sin validar
     Raises
     ------   
     ValueError
@@ -116,28 +113,28 @@ def validar_cantidad_uso (cantidad_uso):
 
     Returns
     -------
-    uso : int
-        Cantidad de uso validada en formato int
+    df: dataframe
+         Dataframe con la  columna cantidad uso validada
 
     """
-    if cantidad_uso  == "":
+    if df["cantidad_uso"].isna().any():
        raise ValueError ("La cantidad de uso está vacía")
     try:
-         cantidad_uso=int(cantidad_uso)
+        df["cantidad_uso"]=df["cantidad_uso"].astype(int)
     except ValueError:
        raise ValueError("Cantidad uso invalida")
-    if cantidad_uso <= 0:
+    if (df["cantidad_uso"]<=0).any():
        raise ValueError ("Cantidad de uso invalida")
-    return cantidad_uso
+    return df
 
-def validar_tiempo_uso (tiempo):
+def validar_tiempo_uso (df):
     """
-    Que hace la función: valida que el tiempo de uso sea el tipo de dato correcto, que contenga el valor esperado y que no este vacio
+    Que hace la función: valida que la columna" tiempo de uso" sea el tipo de dato correcto, que contenga el valor esperado y que no este vacio
 
     Parameters
     ----------
-    tiempo : str
-        El tiempo de uso sin validar en formato string
+    df: dataframe
+        Dataframe con la columna tiempo sin validar
 
     Raises
     ------
@@ -146,28 +143,43 @@ def validar_tiempo_uso (tiempo):
 
     Returns
     -------
-    tiempo : int
-        Tiempo uso en formato int
+    df: dataframe
+        dataframe con la columna tiempo validada 
 
     """
-    if  tiempo == "":
+    if df["tiempo"].isna().any():
          raise ValueError ("El tiempo de uso está vacio")
     try:
-         tiempo=int(tiempo)
+        df["tiempo"]=df["tiempo"].astype(int)
     except ValueError:
        raise ValueError("Tiempo de uso invalido")
-    if tiempo<= 0:
+       
+    if(df["tiempo"]<=0).any():
        raise ValueError ("Tiempo de uso invalido")
-    return tiempo
+
  
-def validar_datos(registro):
-    id_participante=validar_id_participante(registro[0])
-    fecha= validar_fecha (registro[1])
-    app= validar_app (registro[2])
-    cantidad_uso= validar_cantidad_uso (registro[3])
-    tiempo_uso= validar_tiempo_uso(registro[4])
+def validar_datos(df):
+    """
+    Que hace la funcion: valida el dataframe
+
+    Parameters
+    ----------
+    df : dataframe
+        Dataframe sin validar. Columnas de id_participante, fecha, app, cantidad_uso, tiempo
+
+    Returns
+    -------
+    df : dataframe
+        Dataframe validado
+
+    """
+    df=validar_id_participante(df)
+    df= validar_fecha (df)
+    df= validar_app (df)
+    df= validar_cantidad_uso (df)
+    df= validar_tiempo_uso(df)
     
-    return [id_participante, fecha, app, cantidad_uso, tiempo_uso]
+    return df
     
         
               
