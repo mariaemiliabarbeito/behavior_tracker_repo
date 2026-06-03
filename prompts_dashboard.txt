@@ -1,0 +1,16 @@
+Bitácora de Ingeniería de Prompts
+
+El Prompt Semilla: 
+Nuestro promt semilla lo dvidimos en dos porque nos parecía importante que comprendiera bien el contexto antes de pedirle la tarea que tenia que hacer.
+Quiero que seas un programador experto en diseño de interfaces y Streamlit. Te voy a mandar consignas con las que fuimos desarrollando y mejorando un código que debe procesar los archivos que te mandé. Todo lo que adjunto ahora es el contexto del código y también el código final basado en diseño.md. Primero mira bien el código que hice y el contexto, así después entendes bien lo que te voy a pedir que hagas vos. 
+
+segundo promt: 
+ahora que entendiste el contexto necesito que programes la interfaz conectándola con el backend teniendo en cuenta la consigna del trabajo. 
+
+Registro de Iteraciones e Historial de Correcciones:
+
+No tuvimos problemas con código obsoleto ni errores de inteligencia artificial, pero como nuestro código tenia un error, lo corregimos y le pedimos a la inteligencia artificial que vuelva a hacer el trabajo considerando el cambio que habíamos hecho y le pasamos el backend corregido.
+
+Reflexión Técnica:
+Nuestra estrategia fue primero entender bien el trabajo con ayuda de otra IA. luego generamos solas el prompt con la estrategia de "alimentarlo con contexto" primero y después pedirle que haga una tarea específica.ademas en el segundo promt le pedimos que tenga en cuenta la consigna del trabajo para que sobre todo preste atención a la parte de Requisitos Técnicos del Dashboard (app.py).
+ Creemos que quizas no divago porque antes de crear el promt preguntamos a otra inteligencia artificial a que se referia la consigna con:  "Programar la interfaz conectando los cables con el backend" y la parte de conectar los cables nos parecio muy ambigua como para mandársela a la ia en nuestro promt semilla.
